@@ -13,6 +13,8 @@ Group:		Development
 Source0:	http://bond.treshna.com/%{name}-%{version}.tar.gz
 # Source0-md5:	08b033a93d8b1a123a1be5fe112ac521
 URL:		http://bond.treshna.com/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	postgresql-devel
 BuildRequires:	libgda-devel
