@@ -1,9 +1,4 @@
-#
-# Conditional build:
-#%bcond_with	tests		# build with tests
-#%bcond_without	tests		# build without tests
-#
-Summary:	building object network databases
+Summary:	Building object network databases
 Summary(pl):	Sieciowe obiektowe bazy danych
 Name:		bond
 Version:	2.0.9
@@ -15,49 +10,52 @@ Source0:	http://bond.treshna.com/%{name}-%{version}.tar.gz
 URL:		http://bond.treshna.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
+BuildRequires:	libgda-devel
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	postgresql-devel
-BuildRequires:	libgda-devel
 Requires:	libxml2 >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Bond is a rapid application development (RAD) tool for linux that
+Bond is a rapid application development (RAD) tool for Linux that
 allows you to create network database programs quickly and easily.
 
 %description -l pl
-Bond jest narzêdziem RAD dla linuksa które pozwola tworzyæ sieciowe
-bazy danych szybko i ³atwo.
+Bond jest narzêdziem RAD dla Linuksa pozwalaj±cym szybko i ³atwo
+tworzyæ sieciowe bazy danych.
 
 %package -n bonddb
-Summary:	building object network databases -- database
-Summary(pl):	Sieciowe obiektowe bazy danych -- bazadanych
+Summary:	Building object network databases - database
+Summary(pl):	Sieciowe obiektowe bazy danych - baza danych
 Group:		Development
 
 %description -n bonddb
 DB part of Bond.
 
 %description -n bonddb -l pl
-Czê¶æ bazodanowa Bonda
+Czê¶æ bazodanowa Bonda.
 
 %prep
 %setup -q -n %{name}
+
 %build
-
 cd bonddb
-
 %{__gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure --enable-mysql=yes --enable-gda=yes --with-gnu-ld --with-pic
+%configure \
+	--enable-mysql=yes \
+	--enable-gda=yes \
+	--with-gnu-ld \
+	--with-pic
 %{__make}
 
-cd ..
-
-cd bond
+cd ../bond
 %{__gettextize}
 %{__libtoolize}
 %{__aclocal}
@@ -66,12 +64,9 @@ cd bond
 %{__automake}
 %configure
 %{__make}
-cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-# create directories if necessary
-#install -d $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -82,13 +77,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS CREDITS ChangeLog NEWS README THANKS TODO
-
-# if _sysconfdir != /etc:
-#%%dir %{_sysconfdir}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
-
 %attr(755,root,root) %{_bindir}/*
-
 %{_datadir}/%{name}
 
 # initscript and its config
