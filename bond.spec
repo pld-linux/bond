@@ -1,16 +1,17 @@
 #
 # Conditional build:
-%bcond_with	tests		# build with tests
-%bcond_without	tests		# build without tests
+#%bcond_with	tests		# build with tests
+#%bcond_without	tests		# build without tests
 #
-Summary:	-
-Summary(pl):	-
+Summary:	building object network databases
+Summary(pl):	Sieciowe obiektowe bazy danych
 Name:		bond
 Version:	2.0.9
 Release:	0.1
 License:	GPL v2
 #Vendor:		-
 Group:		-
+######		Unknown group!
 #Icon:		-
 Source0:	http://bond.treshna.com/%{name}-%{version}.tar.gz
 # Source0-md5:	08b033a93d8b1a123a1be5fe112ac521
@@ -19,7 +20,8 @@ Source0:	http://bond.treshna.com/%{name}-%{version}.tar.gz
 #Patch0:		%{name}-what.patch
 URL:		http://bond.treshna.com/
 BuildRequires:	libxml2-devel >= 2.6.0
-BuildRequires:	postgresql-devel 
+BuildRequires:	postgresql-devel
+BuildRequires:	libgda-devel
 #PreReq:		-
 #Requires(pre,post):	-
 #Requires(preun):	-
@@ -31,41 +33,50 @@ Requires:	libxml2 >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Bond is a rapid application development (RAD) tool for linux that allows you to create network database programs quickly and easily. With this new version comes major updates in Bond XML format, and a move away from the use of C code completely! This means you can create powerful database programs quickly, only requiring knowledge of XML and SQL.
+Bond is a rapid application development (RAD) tool for linux that
+allows you to create network database programs quickly and easily.
 
 %description -l pl
+Bond jest narzêdziem RAD dla linuksa które pozwola tworzyæ sieciowe bazy 
+danych szybko i ³atwo. 
 
-#%package subpackage
-#Summary:	-
-#Summary(pl):	-
-#Group:		-
+%package -n bonddb 
+Summary: building object network databases -- database
+Summary(pl): Sieciowe obiektowe bazy danych -- bazadanych
 
-#%description subpackage
+%description -n bonddb
+DB part of Bond.
 
-#%description subpackage -l pl
+%description -n bonddb -l pl
+Czê¶æ bazodanowa Bonda
 
 %prep
 %setup -q -n %{name}
-#%patch0 -p1
-
 %build
-# if ac/am/* rebuilding is necessary, do it in this order and add
-# appropriate BuildRequires
 
-for pack in bonddb bond; do
+cd bonddb
 
-cd $pack
-#%{__gettextize}
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
-#%{__automake}
-%configure
+%{__gettextize}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure --enable-mysql=yes --enable-gda=yes --with-gnu-ld --with-pic
 %{__make}
 
 cd ..
-done
+
+cd bond
+%{__gettextize}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
+%{__make}
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -77,14 +88,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%pre
-
-%post
-
-%preun
-
-%postun
 
 %files
 %defattr(644,root,root,755)
@@ -102,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
 
-#%files subpackage
-#%defattr(644,root,root,755)
+%files -n bonddb
+%defattr(644,root,root,755)
 #%doc extras/*.gz
 #%{_datadir}/%{name}-ext
