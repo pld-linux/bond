@@ -9,27 +9,14 @@ Name:		bond
 Version:	2.0.9
 Release:	0.1
 License:	GPL v2
-#Vendor:		-
-Group:		-
-######		Unknown group!
-#Icon:		-
+Group:		Development
 Source0:	http://bond.treshna.com/%{name}-%{version}.tar.gz
 # Source0-md5:	08b033a93d8b1a123a1be5fe112ac521
-#Source1:	-
-#Source1-md5:	-
-#Patch0:		%{name}-what.patch
 URL:		http://bond.treshna.com/
 BuildRequires:	libxml2-devel >= 2.6.0
 BuildRequires:	postgresql-devel
 BuildRequires:	libgda-devel
-#PreReq:		-
-#Requires(pre,post):	-
-#Requires(preun):	-
-#Requires(postun):	-
 Requires:	libxml2 >= 2.6.0
-#Provides:	-
-#Obsoletes:	-
-#Conflicts:	-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -37,12 +24,13 @@ Bond is a rapid application development (RAD) tool for linux that
 allows you to create network database programs quickly and easily.
 
 %description -l pl
-Bond jest narzêdziem RAD dla linuksa które pozwola tworzyæ sieciowe bazy 
-danych szybko i ³atwo. 
+Bond jest narzêdziem RAD dla linuksa które pozwola tworzyæ sieciowe
+bazy danych szybko i ³atwo.
 
-%package -n bonddb 
-Summary: building object network databases -- database
-Summary(pl): Sieciowe obiektowe bazy danych -- bazadanych
+%package -n bonddb
+Summary:	building object network databases -- database
+Summary(pl):	Sieciowe obiektowe bazy danych -- bazadanych
+Group:		Development
 
 %description -n bonddb
 DB part of Bond.
