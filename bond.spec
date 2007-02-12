@@ -1,5 +1,5 @@
 Summary:	Building object network databases
-Summary(pl):	Sieciowe obiektowe bazy danych
+Summary(pl.UTF-8):   Sieciowe obiektowe bazy danych
 Name:		bond
 Version:	2.0.9
 Release:	0.1
@@ -22,20 +22,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Bond is a rapid application development (RAD) tool for Linux that
 allows you to create network database programs quickly and easily.
 
-%description -l pl
-Bond jest narzêdziem RAD dla Linuksa pozwalaj±cym szybko i ³atwo
-tworzyæ sieciowe bazy danych.
+%description -l pl.UTF-8
+Bond jest narzÄ™dziem RAD dla Linuksa pozwalajÄ…cym szybko i Å‚atwo
+tworzyÄ‡ sieciowe bazy danych.
 
 %package -n bonddb
 Summary:	Building object network databases - database
-Summary(pl):	Sieciowe obiektowe bazy danych - baza danych
+Summary(pl.UTF-8):   Sieciowe obiektowe bazy danych - baza danych
 Group:		Development
 
 %description -n bonddb
 DB part of Bond.
 
-%description -n bonddb -l pl
-Czê¶æ bazodanowa Bonda.
+%description -n bonddb -l pl.UTF-8
+CzÄ™Å›Ä‡ bazodanowa Bonda.
 
 %prep
 %setup -q -n %{name}
