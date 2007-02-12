@@ -1,5 +1,5 @@
 Summary:	Building object network databases
-Summary(pl.UTF-8):   Sieciowe obiektowe bazy danych
+Summary(pl.UTF-8):	Sieciowe obiektowe bazy danych
 Name:		bond
 Version:	2.0.9
 Release:	0.1
@@ -28,7 +28,7 @@ tworzyć sieciowe bazy danych.
 
 %package -n bonddb
 Summary:	Building object network databases - database
-Summary(pl.UTF-8):   Sieciowe obiektowe bazy danych - baza danych
+Summary(pl.UTF-8):	Sieciowe obiektowe bazy danych - baza danych
 Group:		Development
 
 %description -n bonddb
