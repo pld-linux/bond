@@ -10,7 +10,7 @@ Source0:	http://bond.treshna.com/%{name}-%{version}.tar.gz
 URL:		http://bond.treshna.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	libgda-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.0
